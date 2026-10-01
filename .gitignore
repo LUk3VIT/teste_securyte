@@ -1,0 +1,13 @@
+# Dependências (reinstaláveis com npm install / composer install)
+node_modules/
+vendor/
+
+# Segredos e configurações locais
+.env
+*.local.php
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

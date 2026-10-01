@@ -1,0 +1,13 @@
+{
+  "name": "teste-securyte",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Laboratório de segurança web: loja de jogo (front em TypeScript, back-end em PHP MVC)",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

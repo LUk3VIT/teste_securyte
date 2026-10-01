@@ -1,31 +1,170 @@
-/* Estilos personalizados para o Laboratório de Segurança Web */
+/* ================================================================
+   Loja do Aventureiro: tema escuro de jogo
+   ================================================================ */
+:root {
+  --fundo: #0f1117;
+  --fundo-2: #161a23;
+  --superficie: #1c2130;
+  --superficie-2: #252b3d;
+  --borda: #2f364b;
+  --texto: #e7e9f0;
+  --texto-suave: #9aa1b5;
+  --ouro: #f2c14e;
+  --primaria: #7c5cff;
+  --primaria-hover: #6a48f5;
+  --perigo: #ef5b5b;
+  --sucesso: #3ccf91;
+
+  --comum: #a3acbf;
+  --raro: #4ea8ff;
+  --epico: #b56cff;
+  --lendario: #ff9f2e;
+
+  --raio: 14px;
+  --sombra: 0 10px 30px rgba(0, 0, 0, .35);
+  --fonte: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 body {
-    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
-    min-height: 100vh;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  font-family: var(--fonte);
+  background: radial-gradient(1200px 600px at 20% -10%, #231a45 0%, transparent 60%), var(--fundo);
+  color: var(--texto);
+  min-height: 100vh;
 }
 
-.card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+h1, h2, h3 { margin: 0; }
 
-.card:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+/* ---------- Botões e campos ---------- */
+.botao {
+  font: inherit; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--borda); border-radius: 10px;
+  padding: .6rem 1rem; background: var(--superficie-2); color: var(--texto);
+  transition: background .15s, transform .05s, opacity .15s;
 }
+.botao:active { transform: translateY(1px); }
+.botao:disabled { opacity: .5; cursor: not-allowed; }
+.botao-primario { background: var(--primaria); border-color: var(--primaria); color: #fff; }
+.botao-primario:hover:not(:disabled) { background: var(--primaria-hover); }
+.botao-fantasma { background: transparent; }
+.botao-fantasma:hover { background: var(--superficie-2); }
+.botao-perigo { color: var(--perigo); border-color: color-mix(in srgb, var(--perigo) 40%, transparent); background: transparent; }
+.botao-perigo:hover { background: color-mix(in srgb, var(--perigo) 15%, transparent); }
+.botao-pequeno { padding: .35rem .7rem; font-size: .85rem; }
+.botao-largo { width: 100%; padding: .8rem; }
+.botao.carregando { opacity: .7; cursor: progress; }
 
-.form-control:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+label { display: flex; flex-direction: column; gap: .35rem; font-size: .9rem; color: var(--texto-suave); font-weight: 600; }
+input, select, textarea {
+  font: inherit; color: var(--texto); background: var(--fundo-2);
+  border: 1px solid var(--borda); border-radius: 10px; padding: .65rem .8rem;
 }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--primaria); outline-offset: 1px; border-color: transparent; }
+textarea { resize: vertical; }
+input, select, textarea { width: 100%; min-width: 0; }
+.form-compra input { flex: 0 0 72px; }
 
-.badge {
-    letter-spacing: 0.5px;
+/* ---------- Faixa de modo mock ---------- */
+.faixa-mock {
+  margin: 0 0 1rem; padding: .55rem .8rem; border-radius: 10px; font-size: .85rem;
+  background: color-mix(in srgb, var(--ouro) 12%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--ouro) 50%, transparent); color: var(--ouro);
 }
+.faixa-topo { max-width: 1100px; margin: 1rem auto 0; width: calc(100% - 32px); }
 
-.form-text code {
-    background-color: #e9ecef;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: #d63384;
+/* ---------- Tela de login ---------- */
+.pagina-auth { display: grid; place-items: center; padding: 16px; }
+.cartao-auth {
+  width: 100%; max-width: 420px; background: var(--superficie);
+  border: 1px solid var(--borda); border-radius: var(--raio); padding: 2rem; box-shadow: var(--sombra);
+}
+.marca { text-align: center; margin-bottom: 1.5rem; }
+.marca-icone { font-size: 2.4rem; }
+.marca h1 { font-size: 1.6rem; margin-top: .3rem; }
+.marca p { color: var(--texto-suave); margin: .3rem 0 0; font-size: .9rem; }
+.abas-auth { display: grid; grid-template-columns: 1fr 1fr; background: var(--fundo-2); border-radius: 10px; padding: 4px; margin-bottom: 1.25rem; }
+.aba-auth { font: inherit; font-weight: 600; border: 0; background: transparent; color: var(--texto-suave); padding: .55rem; border-radius: 8px; cursor: pointer; }
+.aba-auth.ativa { background: var(--superficie-2); color: var(--texto); }
+.form-auth { display: flex; flex-direction: column; gap: 1rem; }
+
+/* ---------- Topo ---------- */
+.topo { background: color-mix(in srgb, var(--fundo-2) 85%, transparent); border-bottom: 1px solid var(--borda); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+.topo-conteudo { max-width: 1100px; margin: 0 auto; padding: .8rem 16px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.marca-mini { font-size: 1.05rem; }
+.jogador { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; }
+.jogador-info { display: flex; align-items: center; gap: .5rem; font-weight: 600; }
+.saldo { font-weight: 700; color: var(--ouro); background: color-mix(in srgb, var(--ouro) 10%, transparent); border: 1px solid color-mix(in srgb, var(--ouro) 35%, transparent); padding: .35rem .75rem; border-radius: 999px; }
+.selo { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; padding: .2rem .5rem; border-radius: 999px; background: var(--superficie-2); color: var(--texto-suave); }
+.selo-admin { background: color-mix(in srgb, var(--perigo) 18%, transparent); color: var(--perigo); }
+
+/* ---------- Conteúdo e abas ---------- */
+.conteudo { max-width: 1100px; margin: 0 auto; padding: 1.5rem 16px 4rem; }
+.abas { display: flex; gap: .5rem; margin-bottom: 1.5rem; overflow-x: auto; }
+.aba { font: inherit; font-weight: 600; white-space: nowrap; border: 1px solid var(--borda); background: var(--superficie); color: var(--texto-suave); padding: .6rem 1rem; border-radius: 10px; cursor: pointer; }
+.aba.ativa { background: var(--primaria); border-color: var(--primaria); color: #fff; }
+.vazio { color: var(--texto-suave); text-align: center; padding: 2rem 0; grid-column: 1 / -1; }
+
+/* ---------- Raridades ---------- */
+.raridade-comum    { --cor-raridade: var(--comum); }
+.raridade-raro     { --cor-raridade: var(--raro); }
+.raridade-epico    { --cor-raridade: var(--epico); }
+.raridade-lendario { --cor-raridade: var(--lendario); }
+
+/* ---------- Grade da loja ---------- */
+.grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+.carta {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--cor-raridade) 10%, var(--superficie)) 0%, var(--superficie) 45%);
+  border: 1px solid color-mix(in srgb, var(--cor-raridade) 40%, var(--borda));
+  border-radius: var(--raio); padding: 1rem; display: flex; flex-direction: column; gap: .6rem;
+  transition: transform .15s, box-shadow .15s;
+}
+.carta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px color-mix(in srgb, var(--cor-raridade) 20%, transparent); }
+.carta header { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; }
+.carta .raridade { color: var(--cor-raridade); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.carta .estoque { color: var(--texto-suave); }
+.carta h3 { font-size: 1.1rem; }
+.carta .descricao { color: var(--texto-suave); font-size: .9rem; margin: 0; flex: 1; }
+.carta .preco { font-weight: 700; color: var(--ouro); font-size: 1.1rem; }
+.form-compra { display: flex; gap: .5rem; }
+.form-compra input { width: 72px; }
+.form-compra .botao { flex: 1; }
+
+/* ---------- Inventário ---------- */
+.lista-inventario { display: flex; flex-direction: column; gap: .5rem; }
+.linha-inventario { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: .8rem; background: var(--superficie); border: 1px solid var(--borda); border-radius: 10px; padding: .8rem 1rem; }
+.linha-inventario .ponto { width: 10px; height: 10px; border-radius: 50%; background: var(--cor-raridade); box-shadow: 0 0 10px var(--cor-raridade); }
+.linha-inventario .nome { font-weight: 600; }
+.linha-inventario .raridade { color: var(--cor-raridade); font-size: .8rem; font-weight: 700; text-transform: uppercase; }
+.linha-inventario .quantidade { font-weight: 700; }
+
+/* ---------- Admin ---------- */
+.cartao { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 1.25rem; }
+.admin { display: grid; grid-template-columns: 320px 1fr; gap: 1rem; align-items: start; }
+.admin > * { min-width: 0; }
+.form-item { display: flex; flex-direction: column; gap: .8rem; }
+.form-item h2 { font-size: 1.1rem; }
+.linha-campos { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.linha-botoes { display: flex; gap: .5rem; }
+.tabela-container { overflow-x: auto; padding: 0; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { padding: .75rem 1rem; text-align: left; border-bottom: 1px solid var(--borda); white-space: nowrap; }
+th { color: var(--texto-suave); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+tbody tr:last-child td { border-bottom: 0; }
+.acoes { display: flex; gap: .4rem; justify-content: flex-end; }
+.etiqueta { color: var(--cor-raridade); font-weight: 700; font-size: .8rem; }
+
+/* ---------- Avisos (toasts) ---------- */
+#avisos { position: fixed; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: .5rem; z-index: 100; max-width: calc(100% - 32px); }
+.aviso { padding: .75rem 1rem; border-radius: 10px; background: var(--superficie-2); border: 1px solid var(--borda); box-shadow: var(--sombra); animation: entrar .2s ease-out; transition: opacity .3s, transform .3s; }
+.aviso-sucesso { border-color: var(--sucesso); }
+.aviso-erro { border-color: var(--perigo); }
+.aviso.saindo { opacity: 0; transform: translateY(6px); }
+@keyframes entrar { from { opacity: 0; transform: translateY(8px); } }
+
+@media (max-width: 760px) {
+  .admin { grid-template-columns: 1fr; }
+  .topo-conteudo { justify-content: center; }
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja do Aventureiro</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="topo-conteudo">
+      <div class="marca-mini">⚔️ <strong>Loja do Aventureiro</strong></div>
+      <div class="jogador">
+        <div class="jogador-info">
+          <span id="nome-usuario">…</span>
+          <span id="perfil-usuario" class="selo">…</span>
+        </div>
+        <div id="saldo" class="saldo">…</div>
+        <button id="btn-sair" class="botao botao-fantasma">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <p id="aviso-mock" class="faixa-mock faixa-topo" hidden>
+    Modo mock ativo: os dados são simulados no navegador (resetarMockDb() no console para reiniciar).
+  </p>
+
+  <main class="conteudo">
+    <nav class="abas" role="tablist">
+      <button class="aba ativa" data-alvo="painel-loja">🛒 Loja</button>
+      <button class="aba" data-alvo="painel-inventario">🎒 Inventário</button>
+      <button class="aba" id="aba-admin" data-alvo="painel-admin" hidden>🛠️ Administração</button>
+    </nav>
+
+    <!-- LOJA -->
+    <section id="painel-loja" class="painel">
+      <div id="grade-itens" class="grade"></div>
+    </section>
+
+    <!-- INVENTÁRIO -->
+    <section id="painel-inventario" class="painel" hidden>
+      <div id="lista-inventario" class="lista-inventario"></div>
+    </section>
+
+    <!-- ADMIN (CRUD de itens) -->
+    <section id="painel-admin" class="painel" hidden>
+      <div class="admin">
+        <form id="form-item" class="cartao form-item">
+          <h2 id="titulo-form-item">Novo item</h2>
+          <input type="hidden" name="id">
+          <label>Nome <input type="text" name="nome" required></label>
+          <label>Descrição <textarea name="descricao" rows="3"></textarea></label>
+          <div class="linha-campos">
+            <label>Preço <input type="number" name="preco" min="0" required></label>
+            <label>Estoque <input type="number" name="estoque" min="0" required></label>
+          </div>
+          <label>Raridade
+            <select name="raridade">
+              <option value="comum">Comum</option>
+              <option value="raro">Raro</option>
+              <option value="epico">Épico</option>
+              <option value="lendario">Lendário</option>
+            </select>
+          </label>
+          <div class="linha-botoes">
+            <button type="submit" class="botao botao-primario">Salvar</button>
+            <button type="button" id="btn-cancelar-item" class="botao botao-fantasma" hidden>Cancelar</button>
+          </div>
+        </form>
+
+        <div class="cartao tabela-container">
+          <table id="tabela-itens">
+            <thead>
+              <tr><th>#</th><th>Nome</th><th>Raridade</th><th>Preço</th><th>Estoque</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/loja.js"></script>
+</body>
+</html>

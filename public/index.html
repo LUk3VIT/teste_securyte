@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja do Aventureiro — Entrar</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="pagina-auth">
+
+  <main class="cartao-auth">
+    <div class="marca">
+      <span class="marca-icone">⚔️</span>
+      <h1>Loja do Aventureiro</h1>
+      <p>Laboratório de segurança web</p>
+    </div>
+
+    <p id="aviso-mock" class="faixa-mock" hidden>
+      Modo mock ativo: os dados são simulados no navegador.
+    </p>
+
+    <div class="abas-auth" role="tablist">
+      <button type="button" class="aba-auth ativa" data-alvo="form-login">Entrar</button>
+      <button type="button" class="aba-auth" data-alvo="form-cadastro">Criar conta</button>
+    </div>
+
+    <form id="form-login" class="form-auth" novalidate>
+      <label>
+        Usuário ou e-mail
+        <input type="text" name="usuario" placeholder="jogador@loja.com" autocomplete="off" required>
+      </label>
+      <label>
+        Senha
+        <input type="password" name="senha" placeholder="Sua senha" required>
+      </label>
+      <button type="submit" class="botao botao-primario botao-largo">Entrar</button>
+    </form>
+
+    <form id="form-cadastro" class="form-auth" novalidate hidden>
+      <label>
+        Nome do personagem
+        <input type="text" name="nome" placeholder="Ex: Aragorn" required>
+      </label>
+      <label>
+        E-mail
+        <input type="email" name="email" placeholder="voce@exemplo.com" required>
+      </label>
+      <label>
+        Senha
+        <input type="password" name="senha" placeholder="Crie uma senha" required>
+      </label>
+      <button type="submit" class="botao botao-primario botao-largo">Criar conta</button>
+    </form>
+  </main>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>
